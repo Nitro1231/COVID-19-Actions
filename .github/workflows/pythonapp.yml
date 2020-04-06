@@ -5,7 +5,7 @@ name: COVID-19 Data Reorganization
 
 on:
   schedule:
-  - cron: "0 6,13,14,23 * * *"
+  - cron: "/30 6,13,14,23 * * *"
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
         pip install -r requirements.txt
     - name: Run
       run: |
-        python test_DataUpdate.py
+        python DataUpdate.py
     - name: Commit files
       run: |
         git config --local user.email "nitro0@naver.com"
