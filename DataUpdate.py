@@ -7,14 +7,6 @@ import matplotlib.patches as mpatches
 from datetime import datetime, timezone, timedelta
 
 def dataUpdate():
-    try:
-        if not(os.path.isdir('DailyReports')):
-            os.makedirs(os.path.join('DailyReports'))
-    except OSError as e:
-        if e.errno != errno.EEXIST:
-            print("Failed to create directory.")
-            raise
-
     # Get current time in UTC.
     c = ntplib.NTPClient()
     # NTP server ip
