@@ -20,7 +20,7 @@ def test_DataUpdate():
     try:
         targetTime = time.strftime('%m-%d-%Y')
         lastUpdate = time.strftime(f'%m-%d-%Y (%H:%M:%S)')
-        URL = urlparse(f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{targetTime}.csv')
+        URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{targetTime}.csv'
         urllib.request.urlretrieve(URL, f'DailyReports\\{targetTime}.csv')
     except:
         targetTime = (time - timedelta(days=1)).strftime('%m-%d-%Y')
