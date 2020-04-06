@@ -4,10 +4,8 @@
 name: Test
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  schedule:
+    - cron:  '*/60 * * * *'
 
 jobs:
   build:
@@ -35,3 +33,12 @@ jobs:
       run: |
         pip install pytest
         pytest
+    - name: Commit files
+      run: |
+        git config --local user.email "nitro0@naver.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Auto Update" -a
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
