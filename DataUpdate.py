@@ -20,20 +20,20 @@ def dataUpdate():
         targetTime = time.strftime('%m-%d-%Y')
         lastUpdate = time.strftime(f'%m-%d-%Y (%H:%M:%S)')
         URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{targetTime}.csv'
-        urllib.request.urlretrieve(URL, f'DailyReports\\{targetTime}.csv')
+        urllib.request.urlretrieve(URL, f'DailyReports/{targetTime}.csv')
     except:
         targetTime = (time - timedelta(days=1)).strftime('%m-%d-%Y')
         lastUpdate = time.strftime(f'%m-%d-%Y (%H:%M:%S)')
         URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{targetTime}.csv'
-        urllib.request.urlretrieve(URL, f'DailyReports\\{targetTime}.csv')
+        urllib.request.urlretrieve(URL, f'DailyReports/{targetTime}.csv')
 
-    originalData = pd.read_csv(f'DailyReports\\{targetTime}.csv')
+    originalData = pd.read_csv(f'DailyReports/{targetTime}.csv')
     data = originalData[['Country_Region', 'Confirmed', 'Deaths', 'Recovered', 'Active']].groupby('Country_Region').sum()
     Confirmed = data['Confirmed'].sum()
     Deaths = data['Deaths'].sum()
     Recovered = data['Recovered'].sum()
 
-    data.to_csv(f'DailyReports\\{targetTime}-Re.csv')
+    data.to_csv(f'DailyReports/{targetTime}-Re.csv')
     data = data.sort_values(["Confirmed"], ascending=[False])
     data = data.head(10)
 
@@ -47,7 +47,7 @@ def dataUpdate():
     plt.ylabel('Number of People')
     plt.title(f'TOP-10 countries with most confirmed cases ({targetTime})')
     plt.legend()
-    plt.savefig(f'DailyReports\\{targetTime}.png')
+    plt.savefig(f'DailyReports/{targetTime}.png')
     #plt.show()
     print(data)
 
