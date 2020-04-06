@@ -2,12 +2,11 @@ import os, sys
 import ntplib
 import pandas as pd
 import urllib.request
-import pytest
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from datetime import datetime, timezone, timedelta
 
-def test_DataUpdate():
+def dataUpdate():
     try:
         if not(os.path.isdir('DailyReports')):
             os.makedirs(os.path.join('DailyReports'))
@@ -60,4 +59,4 @@ def test_DataUpdate():
     #plt.show()
     print(data)
 
-test_DataUpdate()
+dataUpdate()
