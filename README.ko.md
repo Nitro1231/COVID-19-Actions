@@ -1,11 +1,11 @@
 # COVID-19-Actions
-깃허브의 Actions 기능을 이용하여 특정 시간마다 COVID-19의 데이터를 재구성 합니다.
+깃허브의 Actions 기능을 이용하여 특정 시간마다 COVID-19의 데이터를 재구성 합니다.   
 재구성된 파일들은 마음대로 사용하셔도 되지만, 파이썬 스크립트는 아래의 저작권에 따라 이용할 수 있습니다.
 
 *Read this in other languages: [English](README.md), [한국어](README.ko.md).*
 
 # 출처
-모든 데이터 파일은 Johns Hopkins 대학 시스템 과학 및 엔지니어링 센터 (JHU CSSE)의 데이터 리포지토리를 기반으로 합니다.
+모든 데이터 파일은 Johns Hopkins 대학 시스템 과학 및 엔지니어링 센터 (JHU CSSE)의 데이터 리포지토리를 기반으로 합니다.   
 [여기서](https://github.com/CSSEGISandData/COVID-19) 해당 데이터 리포지토리를 확인하실 수 있습니다.
 
 # 라이선스

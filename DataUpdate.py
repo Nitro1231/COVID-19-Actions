@@ -4,11 +4,11 @@ import json
 import pandas as pd
 import urllib.request
 import matplotlib.pyplot as plt
+import matplotlib.ticker as ticker
 import matplotlib.patches as mpatches
 from datetime import datetime, timezone, timedelta
 from collections import OrderedDict
 
-targetTime = ""
 def getUTC():
     # Get current time in UTC.
     c = ntplib.NTPClient()
@@ -56,41 +56,37 @@ def dataUpdate():
         f.write(finalData)
     f.close
 
-    dataConfirmed = pd.read_csv('LastUpdated/confirmed.csv')
-    colum = dataConfirmed.columns[dataConfirmed.shape[1] - 1]
-    dataConfirmed = dataConfirmed[['Country/Region', colum]]
-    dataConfirmed.columns = ['Country/Region', 'Confirmed']
-
-    dataDeaths = pd.read_csv('LastUpdated/deaths.csv')
-    dataDeaths = dataDeaths[['Country/Region', colum]]
-    dataDeaths.columns = ['Country/Region', 'Deaths']
-
-    dataRecovered = pd.read_csv('LastUpdated/recovered.csv')
-    dataRecovered = dataRecovered[['Country/Region', colum]]
-    dataRecovered.columns = ['Country/Region', 'Recovered']
-
-    dataCombined = pd.merge(dataConfirmed, dataDeaths, on='Country/Region')
-    dataCombined = pd.merge(dataCombined, dataRecovered, on='Country/Region')
+    dataCombined = pd.read_csv('LastUpdated/confirmed.csv')
+    dataCombined = dataCombined[['Country/Region']]
+    for dataType in dataList:
+        data = pd.read_csv(f'LastUpdated/{dataType}.csv')
+        data = data[['Country/Region', data.columns[data.shape[1] - 1]]]
+        data.columns = ['Country/Region', dataType]
+        dataCombined = pd.merge(dataCombined, data, on='Country/Region')
     dataCombined.to_csv('LastUpdated/combined.csv', index=False)
 
 def top10Graph():
     data = pd.read_csv('LastUpdated/combined.csv')
-    data = data[['Country/Region', 'Confirmed', 'Deaths', 'Recovered']].groupby('Country/Region').sum()
-    data = data.sort_values(["Confirmed"], ascending=[False])
+    data = data[['Country/Region', 'confirmed', 'deaths', 'recovered']].groupby('Country/Region').sum()
+    data = data.sort_values(["confirmed"], ascending=[False])
     data = data.head(10)
 
     plt.style.use(['dark_background'])
-    fig = plt.figure()
-    fig.patch.set_facecolor(color=(30/255, 30/255, 30/255,1.0))
-    data['Confirmed'].plot(kind='bar', color=(241/255, 196/255, 15/255,1.0))
-    data['Recovered'].plot(kind='bar', color=(46/255, 204/255, 113/255,1.0))
-    data['Deaths'].plot(kind='bar', color=(231/255, 76/255, 60/255,1.0))
+    fig, ax = plt.subplots()
+    fig.subplots_adjust(bottom=0.25)
+    data['confirmed'].plot(kind='bar', color=(241/255, 196/255, 15/255,1.0), label='Confirmed')
+    data['recovered'].plot(kind='bar', color=(46/255, 204/255, 113/255,1.0), label='Recovered')
+    data['deaths'].plot(kind='bar', color=(231/255, 76/255, 60/255,1.0), label='Deaths')
+    ax.yaxis.set_major_formatter(ticker.EngFormatter())
+    plt.xticks(rotation=45)
     plt.xlabel('Country')
     plt.ylabel('Number of People')
     plt.legend()
     plt.title(f'TOP-10 countries with most confirmed cases ({lastUpdated})')
-    plt.savefig(f'DailyReports/{targetTime}/top10.png', aspect='auto')
-    plt.savefig(f'LastUpdated/top10.png', aspect='auto')
-
+    plt.savefig(f'DailyReports/{targetTime}/top10_bg.png', aspect='auto')
+    plt.savefig(f'DailyReports/{targetTime}/top10_t.png', aspect='auto', transparent=True)
+    plt.savefig(f'LastUpdated/top10_bg.png', aspect='auto')
+    plt.savefig(f'LastUpdated/top10_t.png', aspect='auto', transparent=True)
+    
 dataUpdate()
 top10Graph()

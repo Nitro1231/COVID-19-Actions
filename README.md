@@ -1,11 +1,11 @@
 # COVID-19-Actions
-COVID-19 Data Reorganization using Github Actions.
+COVID-19 Data Reorganization using Github Actions.   
 You can use the data files without any limitation, but Python scripts are protected under the following license.
 
 *Read this in other languages: [English](README.md), [한국어](README.ko.md).*
 
 # Source
-All of the data files are based on the Data Repository by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE).
+All of the data files are based on the Data Repository by Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE).   
 You can find the data repository [here](https://github.com/CSSEGISandData/COVID-19).
 
 # License
