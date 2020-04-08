@@ -1,0 +1,2 @@
+py map.py
+pause

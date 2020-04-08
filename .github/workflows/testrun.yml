@@ -23,6 +23,7 @@ jobs:
     - name: Run
       run: |
         python DataUpdate.py
+        python Map.py
     - name: Commit files
       run: |
         git config --local user.email "nitro0@naver.com"

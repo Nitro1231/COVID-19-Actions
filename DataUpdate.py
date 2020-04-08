@@ -40,6 +40,16 @@ def dataUpdate(time):
     mkdir('LastUpdated/Original')
     mkdir('LastUpdated/Reorganized')
     mkdir('LastUpdated/Img')
+
+    try:
+        daily = time.strftime('%m-%d-%Y')
+        URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily}.csv'
+        urllib.request.urlretrieve(URL, f'LastUpdated/Original/daily_reports.csv')
+    except:
+        daily = (time - timedelta(days=1)).strftime('%m-%d-%Y')
+        URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily}.csv'
+        urllib.request.urlretrieve(URL, f'LastUpdated/Original/daily_reports.csv')
+
     dataList = ['confirmed', 'deaths', 'recovered']
     for dataType in dataList:
         URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_{dataType}_global.csv'
