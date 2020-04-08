@@ -24,6 +24,11 @@ def mkdir(newPath):
     if not(os.path.isdir(newPath)):
         os.makedirs(os.path.join(newPath))
 
+def overwrite(from_path, to_path):
+    if os.path.exists(to_path):
+        shutil.rmtree(to_path)
+    shutil.copytree(from_path, to_path)
+
 def dataUpdate(time):
     targetTime = time.strftime('%m-%d-%Y')
     lastUpdated = time.strftime(f'%Y-%m-%dT%H:%M:%SUTC')
@@ -131,4 +136,4 @@ top10Graph(lastUpdated)
 globalGraph(True)
 globalGraph(False)
 
-shutil.copytree('LastUpdated', f'DailyReports/{targetTime}')
+overwrite('LastUpdated', f'DailyReports/{targetTime}')
