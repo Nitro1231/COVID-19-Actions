@@ -115,7 +115,7 @@ def globalGraph(log):
     plt.minorticks_off()
     plt.xlabel('Date')
     plt.ylabel('Number of People')
-    plt.legend(['Recovered', 'Deaths', 'Confirmed'], fancybox=True)
+    plt.legend(['Confirmed', 'Recovered', 'Deaths'], fancybox=True)
     plt.title(title)
     plt.savefig(f'LastUpdated/Img/{name}_bg.png', aspect='auto')
     plt.savefig(f'LastUpdated/Img/{name}_t.png', aspect='auto', transparent=True)
