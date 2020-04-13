@@ -1,12 +1,14 @@
 import os, sys
 import ntplib
 import json
+import math
 import shutil
 import pandas as pd
 import urllib.request
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 import matplotlib.patches as mpatches
+from matplotlib.dates import AutoDateFormatter, AutoDateLocator
 from datetime import datetime, timezone, timedelta
 from collections import OrderedDict
 
@@ -65,7 +67,7 @@ def dataUpdate(time):
     jsonData['recovery_rate'] = jsonData['total_recovered'] / jsonData['total_confirmed']
 
     finalData = json.dumps(jsonData)
-    with open('LastUpdated/data.json', 'w') as f:
+    with open('LastUpdated/data.json', 'w', encoding='UTF8') as f:
         f.write(finalData)
     f.close
 
@@ -79,6 +81,73 @@ def dataUpdate(time):
     dataCombined.to_csv('LastUpdated/Reorganized/combined.csv', index=False)
 
     return targetTime, lastUpdated
+
+def prediction(r, i, max, lastUpdated):
+    predictionData = OrderedDict()
+    data = getData('confirmed')
+
+    startDate = datetime.strptime('1/22/20', '%m/%d/%y')
+    updatedData = list(data.items())[len(data)-1]
+    currentDay = datetime.strptime(updatedData[0], '%m/%d/%y').strftime('%m/%d/%y')
+
+    currentConfirmed = updatedData[1]
+    ConfirmedPrediction = 0
+    tomorrow=''
+    totalDays = max
+    finalDay=''
+
+    t = 1
+    T = len(data) # 발병일로부터 누적날자
+    K = math.ceil((updatedData[1]*(1+math.exp(r*(T-i))))/(math.exp(r*(T-i))))
+    for d in range(0, max):
+        cDate = (startDate + timedelta(days=d)).strftime('%m/%d/%y')
+        predictionNum = math.ceil((math.exp(r*(t-i))*K)/(1+math.exp(r*(t-i))))
+        predictionData[cDate] = predictionNum
+        t += 1
+        if (startDate + timedelta(days=d-1)).strftime('%m/%d/%y') == currentDay:
+            ConfirmedPrediction = predictionNum
+            tomorrow = cDate
+        if math.ceil(predictionNum / 100) == math.ceil(K / 100) :
+            totalDays = d
+            finalDay = cDate
+            break
+
+    jsonData = OrderedDict()
+    jsonData['last_updated'] = lastUpdated
+    jsonData['total_confirmed_prediction'] = K
+    jsonData['total_confirmed_difference'] = K - currentConfirmed
+    jsonData['tomorrow'] = tomorrow
+    jsonData['tomorrow_confirmed_prediction'] = ConfirmedPrediction
+    jsonData['tomorrow_confirmed_difference'] = ConfirmedPrediction - currentConfirmed
+    jsonData['total_days'] = totalDays
+    jsonData['days_remained'] = totalDays - T
+    jsonData['final_day_prediction'] = finalDay
+    finalData = json.dumps(jsonData)
+    with open('LastUpdated/prediction.json', 'w', encoding='UTF8') as f:
+        f.write(finalData)
+    f.close
+
+    confirmedData = pd.DataFrame.from_dict(getData('confirmed'), orient='index', columns=['total'])
+    predictionData = pd.DataFrame.from_dict(predictionData, orient='index', columns=['total'])
+
+    plt.style.use(['dark_background'])
+    predictionData['total'].plot(color=(52/255, 152/255, 219/255,1.0), label='Prediction', linestyle='--', zorder=1)
+    confirmedData['total'].plot(color=(241/255, 196/255, 15/255,1.0), label='Confirmed', marker='o', zorder=2)
+
+    dateStr=list()
+    for i in range(0, len(predictionData.index), math.ceil(len(predictionData.index) / 7)):
+        dateStr.append(str(predictionData.index[i]))
+    plt.gca().yaxis.set_major_formatter(ticker.EngFormatter())
+    plt.xticks(range(0, len(predictionData.index), math.ceil(len(predictionData.index) / 7)), dateStr)
+    plt.minorticks_off()
+    plt.xlabel('Date')
+    plt.ylabel('Number of People')
+    plt.legend(['Prediction', 'Confirmed'], fancybox=True)
+    plt.title('Prediction (Beta...)')
+    plt.savefig('LastUpdated/Img/prediction_bg.png', aspect='auto')
+    plt.savefig('LastUpdated/Img/prediction_t.png', aspect='auto', transparent=True)
+    plt.cla()
+    plt.close('all')
 
 def top10Graph(lastUpdated):
     data = pd.read_csv('LastUpdated/Reorganized/combined.csv')
@@ -110,7 +179,6 @@ def globalGraph(log):
     if (log):
         title = f'Global Cases Log Graph ({lastUpdated})'
         name = 'global_log'
-        
 
     confirmedData = pd.DataFrame.from_dict(getData('confirmed'), orient='index', columns=['total'])
     recoveredData = pd.DataFrame.from_dict(getData('recovered'), orient='index', columns=['total'])
@@ -145,5 +213,6 @@ targetTime, lastUpdated = dataUpdate(getUTC())
 top10Graph(lastUpdated)
 globalGraph(True)
 globalGraph(False)
+prediction(0.13, 76.5, 200, lastUpdated) # r, i, max
 
 overwrite('LastUpdated', f'DailyReports/{targetTime}')
