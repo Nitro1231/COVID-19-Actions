@@ -1,0 +1,186 @@
+Country/Region,confirmed,deaths,recovered
+Afghanistan,1026,36,135
+Albania,584,26,327
+Algeria,2718,384,1099
+Andorra,717,37,248
+Angola,24,2,6
+Antigua and Barbuda,23,3,3
+Argentina,2941,136,737
+Armenia,1339,22,580
+Australia,6547,67,4124
+Austria,14795,470,10631
+Azerbaijan,1436,19,791
+Bahamas,60,9,11
+Bahrain,1907,7,769
+Bangladesh,2948,101,85
+Barbados,75,5,19
+Belarus,6264,51,514
+Belgium,39983,5828,8895
+Belize,18,2,2
+Benin,54,1,27
+Bhutan,5,0,2
+Bolivia,564,33,31
+Bosnia and Herzegovina,1309,49,381
+Botswana,20,1,0
+Brazil,40743,2587,22130
+Brunei,138,1,116
+Bulgaria,929,43,167
+Burkina Faso,581,38,357
+Burma,119,5,7
+Burundi,5,1,4
+Cabo Verde,67,1,1
+Cambodia,122,0,107
+Cameroon,1163,42,305
+Canada,37657,1725,12543
+Central African Republic,12,0,4
+Chad,33,0,8
+Chile,10507,139,4676
+China,83817,4636,77745
+Colombia,3977,189,804
+Congo (Brazzaville),160,6,16
+Congo (Kinshasa),332,25,27
+Costa Rica,662,6,124
+Cote d'Ivoire,847,9,260
+Croatia,1881,47,771
+Cuba,1087,36,285
+Cyprus,772,12,81
+Czechia,6900,194,1559
+Denmark,7711,364,4499
+Diamond Princess,712,13,644
+Djibouti,846,2,102
+Dominica,16,0,8
+Dominican Republic,4964,235,416
+Ecuador,10128,507,1150
+Egypt,3333,250,821
+El Salvador,218,7,46
+Equatorial Guinea,79,0,7
+Eritrea,39,0,3
+Estonia,1535,40,165
+Eswatini,24,1,8
+Ethiopia,111,3,16
+Fiji,18,0,3
+Finland,3868,98,2000
+France,156480,20292,38036
+Gabon,120,1,7
+Gambia,10,1,2
+Georgia,402,4,95
+Germany,147065,4862,91500
+Ghana,1042,9,99
+Greece,2245,116,269
+Grenada,14,0,6
+Guatemala,289,7,21
+Guinea,622,5,122
+Guinea-Bissau,50,0,3
+Guyana,65,7,9
+Haiti,57,3,0
+Holy See,9,0,2
+Honduras,477,46,25
+Hungary,1984,199,267
+Iceland,1773,10,1362
+India,18539,592,3273
+Indonesia,6760,590,747
+Iran,83505,5209,59273
+Iraq,1574,82,1043
+Ireland,15652,687,77
+Israel,13713,177,4049
+Italy,181228,24114,48877
+Jamaica,223,5,27
+Japan,10797,236,1159
+Jordan,425,7,282
+Kazakhstan,1852,19,447
+Kenya,281,14,69
+"Korea, South",10674,236,8114
+Kosovo,510,12,93
+Kuwait,1995,9,367
+Kyrgyzstan,568,7,201
+Laos,19,0,2
+Latvia,739,5,88
+Lebanon,677,21,103
+Liberia,99,8,7
+Libya,51,1,15
+Liechtenstein,81,1,55
+Lithuania,1326,37,242
+Luxembourg,3558,75,637
+MS Zaandam,9,2,0
+Madagascar,121,0,41
+Malawi,17,2,3
+Malaysia,5425,89,3295
+Maldives,69,0,16
+Mali,246,14,56
+Malta,431,3,126
+Mauritania,7,1,6
+Mauritius,328,9,224
+Mexico,8261,686,2627
+Moldova,2548,70,457
+Monaco,94,3,23
+Mongolia,33,0,7
+Montenegro,312,5,88
+Morocco,3046,143,350
+Mozambique,39,0,8
+Namibia,16,0,6
+Nepal,31,0,4
+Netherlands,33588,3764,322
+New Zealand,1440,12,974
+Nicaragua,10,2,6
+Niger,648,20,117
+Nigeria,665,22,188
+North Macedonia,1225,54,200
+Norway,7156,181,32
+Oman,1410,7,238
+Pakistan,8418,176,1970
+Panama,4467,126,165
+Papua New Guinea,7,0,0
+Paraguay,208,8,46
+Peru,16325,445,6968
+Philippines,6459,428,613
+Poland,9593,380,1133
+Portugal,20863,735,610
+Qatar,6015,9,555
+Romania,8936,478,2017
+Russia,47121,405,3446
+Rwanda,147,0,76
+Saint Kitts and Nevis,15,0,0
+Saint Lucia,15,0,13
+Saint Vincent and the Grenadines,12,0,1
+San Marino,462,39,61
+Sao Tome and Principe,4,0,0
+Saudi Arabia,10484,103,1490
+Senegal,377,5,235
+Serbia,6630,125,870
+Seychelles,11,0,5
+Sierra Leone,43,0,6
+Singapore,8014,11,801
+Slovakia,1173,13,251
+Slovenia,1335,77,193
+Somalia,237,8,4
+South Africa,3300,58,1055
+South Sudan,4,0,0
+Spain,200210,20852,80587
+Sri Lanka,304,7,98
+Sudan,107,12,8
+Suriname,10,1,6
+Sweden,14777,1580,550
+Switzerland,27944,1429,18600
+Syria,39,3,5
+Taiwan*,422,6,203
+Tanzania,254,10,11
+Thailand,2792,47,1999
+Timor-Leste,22,0,1
+Togo,84,6,53
+Trinidad and Tobago,114,8,22
+Tunisia,884,38,148
+Turkey,90980,2140,13430
+US,784326,42094,72329
+Uganda,56,0,38
+Ukraine,5710,151,359
+United Arab Emirates,7265,43,1360
+United Kingdom,125856,16550,446
+Uruguay,535,10,313
+Uzbekistan,1627,5,261
+Venezuela,256,9,117
+Vietnam,268,0,214
+West Bank and Gaza,449,3,71
+Western Sahara,6,0,0
+Yemen,1,0,0
+Zambia,65,3,35
+Zimbabwe,25,3,2
