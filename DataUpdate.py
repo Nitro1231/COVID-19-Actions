@@ -48,9 +48,14 @@ def dataUpdate(time):
         URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily}.csv'
         urllib.request.urlretrieve(URL, f'LastUpdated/Original/daily_reports.csv')
     except:
-        daily = (time - timedelta(days=1)).strftime('%m-%d-%Y')
-        URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily}.csv'
-        urllib.request.urlretrieve(URL, f'LastUpdated/Original/daily_reports.csv')
+        try:
+            daily = (time - timedelta(days=1)).strftime('%m-%d-%Y')
+            URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily}.csv'
+            urllib.request.urlretrieve(URL, f'LastUpdated/Original/daily_reports.csv')
+        except:
+            daily = (time - timedelta(days=2)).strftime('%m-%d-%Y')
+            URL = f'https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/{daily}.csv'
+            urllib.request.urlretrieve(URL, f'LastUpdated/Original/daily_reports.csv')
 
     dataList = ['confirmed', 'deaths', 'recovered']
     for dataType in dataList:
