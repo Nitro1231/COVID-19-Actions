@@ -149,6 +149,7 @@ def prediction(r, i, max, lastUpdated):
     plt.ylabel('Number of People')
     plt.legend(['Prediction', 'Confirmed'], fancybox=True)
     plt.title('Prediction (Beta...)')
+    #plt.show()
     plt.savefig('LastUpdated/Img/prediction_bg.png', aspect='auto')
     plt.savefig('LastUpdated/Img/prediction_t.png', aspect='auto', transparent=True)
     plt.cla()
@@ -218,6 +219,7 @@ targetTime, lastUpdated = dataUpdate(getUTC())
 top10Graph(lastUpdated)
 globalGraph(True)
 globalGraph(False)
-prediction(0.13, 76.5, 200, lastUpdated) # r, i, max
+#prediction(0.12, 80, 200, '04-24-2020') # r, i, max
+prediction(0.12, 80, 200, lastUpdated) # r, i, max
 
 overwrite('LastUpdated', f'DailyReports/{targetTime}')
