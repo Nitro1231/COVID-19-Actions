@@ -102,7 +102,7 @@ def prediction(r, i, max, lastUpdated):
     finalDay=''
 
     t = 1
-    T = len(data) # 발병일로부터 누적날자
+    T = len(data) # Accumulated date from the start date
     K = math.ceil((updatedData[1]*(1+math.exp(r*(T-i))))/(math.exp(r*(T-i))))
     for d in range(0, max):
         cDate = (startDate + timedelta(days=d)).strftime('%m/%d/%y')
