@@ -220,6 +220,6 @@ top10Graph(lastUpdated)
 globalGraph(True)
 globalGraph(False)
 #prediction(0.095, 85, 200, '05-04-2020') # r, i, max
-prediction(0.095, 85, 200, lastUpdated) # r, i, max
+prediction(0.095, 85, 300, lastUpdated) # r, i, max
 
 overwrite('LastUpdated', f'DailyReports/{targetTime}')
