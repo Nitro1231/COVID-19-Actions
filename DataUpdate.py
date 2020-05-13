@@ -219,7 +219,7 @@ targetTime, lastUpdated = dataUpdate(getUTC())
 top10Graph(lastUpdated)
 globalGraph(True)
 globalGraph(False)
-#prediction(0.095, 85, 200, '05-04-2020') # r, i, max
-prediction(0.095, 85, 300, lastUpdated) # r, i, max
+#prediction(0.083, 90, 200, '05-13-2020') # r, i, max
+prediction(0.083, 90, 250, lastUpdated) # r, i, max
 
 overwrite('LastUpdated', f'DailyReports/{targetTime}')
