@@ -12,6 +12,7 @@ data = pd.read_csv('LastUpdated/Original/daily_reports.csv')
 data = data[['Combined_Key', 'Lat', 'Long_', 'Confirmed', 'Deaths', 'Recovered', 'Active']].dropna()
 
 print(data)
+size = 8000
 
 for item in data.index:
     lat = data.loc[item, 'Lat']
@@ -20,22 +21,22 @@ for item in data.index:
     rad = data.loc[item, 'Confirmed']
     if rad != 0:
         name = f"{data.loc[item, 'Combined_Key']}\n[{lat},{long}]\nConfirmed: {data.loc[item, 'Confirmed']}"
-        folium.CircleMarker([lat, long], radius=rad/2500, color='#f39c12', popup=name, fill=True).add_to(m_confirmed)
+        folium.CircleMarker([lat, long], radius=rad/size, color='#f39c12', popup=name, fill=True).add_to(m_confirmed)
 
     rad = data.loc[item, 'Deaths']
     if rad != 0:
         name = f"{data.loc[item, 'Combined_Key']}\n[{lat},{long}]\nDeaths: {data.loc[item, 'Deaths']}"
-        folium.CircleMarker([lat, long], radius=rad/2500, color='#c0392b', popup=name, fill=True).add_to(m_deaths)
+        folium.CircleMarker([lat, long], radius=rad/size, color='#c0392b', popup=name, fill=True).add_to(m_deaths)
 
     rad = data.loc[item, 'Recovered']
     if rad != 0:
         name = f"{data.loc[item, 'Combined_Key']}\n[{lat},{long}]\nRecovered: {data.loc[item, 'Recovered']}"
-        folium.CircleMarker([lat, long], radius=rad/2500, color='#27ae60', popup=name, fill=True).add_to(m_recovered)
+        folium.CircleMarker([lat, long], radius=rad/size, color='#27ae60', popup=name, fill=True).add_to(m_recovered)
 
     rad = data.loc[item, 'Active']
     if rad != 0:
         name = f"{data.loc[item, 'Combined_Key']}\n[{lat},{long}]\nActive: {data.loc[item, 'Active']}"
-        folium.CircleMarker([lat, long], radius=rad/2500, color='#2980b9', popup=name, fill=True).add_to(m_active)
+        folium.CircleMarker([lat, long], radius=rad/size, color='#2980b9', popup=name, fill=True).add_to(m_active)
 
 plugins.Fullscreen( position='topright', title='Fullscreen', title_cancel='Exit Fullscreen', force_separate_button=True ).add_to(dataMap)
 folium.LayerControl(collapsed=False).add_to(dataMap)
